@@ -1,6 +1,8 @@
 from tkinter import *
 
 add_per_second=1
+upgrades=[1,5,10,25,50,100,250,500,1000]
+costs=[5,10,25,50,100,250,500,1000,5000]
 
 def move_frame(direction_number):
     global current_frame
@@ -15,9 +17,9 @@ def move_frame(direction_number):
 def upgrade_cookie_growth():
     global add_per_second
     global no_of_cookies
-    if no_of_cookies>=50:
-        add_per_second=add_per_second+1
-        no_of_cookies=no_of_cookies-50
+    if no_of_cookies>=costs[x]:
+        add_per_second=add_per_second+upgrades[y]
+        no_of_cookies=no_of_cookies-costs[x]
     else:
         print()
 
