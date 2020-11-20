@@ -1,8 +1,14 @@
 from tkinter import *
 
+x=0
+y=0
+z=0
+gmowned=0
+fowned=0
 add_per_second=1
 upgrades=[1,5,10,25,50,100,250,500,1000]
-costs=[5,10,25,50,100,250,500,1000,5000]
+costs=[50,100,250,500,1000,2500,5000,10000,50000]
+upgrade_types=[gmowned,fowned]
 
 def move_frame(direction_number):
     global current_frame
@@ -14,14 +20,35 @@ def move_frame(direction_number):
     selected_frame = frames_list[current_frame]
     selected_frame.tkraise()
 
+def upgrade1():
+    global x
+    global y
+    global z
+    x==0
+    y==0
+    z==0
+
+def upgrade2():
+    global x
+    global y
+    global z
+    x==1
+    y==1
+    z==1
+
 def upgrade_cookie_growth():
     global add_per_second
     global no_of_cookies
+    global gmowned
+    global fowned
     if no_of_cookies>=costs[x]:
         add_per_second=add_per_second+upgrades[y]
         no_of_cookies=no_of_cookies-costs[x]
+        upgrade_types[y]=upgrade_types[y]+1
     else:
         print()
+    upgrade_cookie_growth_button1.configure(text="1 cps - cost: 50 (Owned:"+str(gmowned)+")")
+    upgrade_cookie_growth_button2.configure(text="5 cps - cost: 100 (Owned:"+str(fowned)+")")
 
 def Add_cookies():
     global no_of_cookies
@@ -50,8 +77,10 @@ Add_cookies()
 content_frame2 = Frame(root, bg = "white")
 content_frame2.grid(row=1,column=0,sticky=E+W+S+N)
 title = Label(content_frame2, text="Upgrades")
-upgrade_cookie_growth_button=Button(content_frame2, text="+1 cps (-50)",command=upgrade_cookie_growth)
-upgrade_cookie_growth_button.grid(row=2)
+upgrade_cookie_growth_button1=Button(content_frame2, text="1 cps - cost: 50 (Owned:0)",command=lambda:[upgrade1(),upgrade_cookie_growth()])
+upgrade_cookie_growth_button1.grid(row=2)
+upgrade_cookie_growth_button2=Button(content_frame2, text="5 cps - cost: 100 (Owned:0)",command=lambda:[upgrade2(),upgrade_cookie_growth()])
+upgrade_cookie_growth_button2.grid(row=3)
 title.grid(row=1)
 
 content_frame1 = Frame(root, bg = "black")
